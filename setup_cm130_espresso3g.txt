@@ -1,0 +1,40 @@
+mkdir -p ~/android/lineage
+cd ~/android/lineage
+
+ccache -M 50G
+
+repo init -u https://github.com/LineageOS/android.git -b cm-13.0
+
+git config --global user.email $GITHUB_USER_EMAIL
+git config --global user.name $GITHUB_USER_NAME
+
+repo init -u https://github.com/LineageOS/android.git -b cm-13.0
+
+mkdir -p .repo/local_manifests
+
+vim .repo/local_manifests/local_manifest.xml
+--------------------------------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <project name="TheMuppets/proprietary_vendor_samsung" path="vendor/samsung" remote="github" revision="cm-13.0" />
+  <project name="TheMuppets/proprietary_vendor_ti" path="vendor/ti" remote="github" revision="master" />
+</manifest>
+--------------------------------------------
+
+vim ~/lunch_espresso3g.sh
+--------------------------------------------
+#!/bin/bash
+
+cd ~/android/lineage
+repo sync
+. build/envsetup.sh
+breakfast espresso3g
+cat ~/android/lineage/build/core/version_defaults.mk | grep --color "PLATFORM_SECURITY_PATCH :="
+echo "============================================"
+read -p "brunch by pressing enter..."
+
+brunch espresso3g
+echo "espresso3g" | mail -s "espresso3g build done!" $BUILD_DONE_EMAIL
+caja ~/android/lineage/out/target/product/espresso3g
+--------------------------------------------
+chmod +x ~/lunch_espresso3g.sh
