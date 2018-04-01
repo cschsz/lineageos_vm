@@ -1,0 +1,47 @@
+mkdir -p ~/android/carbon
+cd ~/android/carbon
+
+ccache -M 50G
+
+repo init -u https://github.com/LineageOS/android.git -b cm-13.0
+
+git config --global user.email $GITHUB_USER_EMAIL
+git config --global user.name $GITHUB_USER_NAME
+
+repo init -u https://github.com/LineageOS/android.git -b cm-13.0
+
+mkdir -p .repo/local_manifests
+
+vim .repo/local_manifests/local_manifest.xml
+--------------------------------------------
+<?xml version="1.0" encoding="UTF-8"?>
+   <manifest>
+     <project name="LineageOS/android_external_stlport" remote="github" path="external/stlport" revision="cm-13.0" />
+     <project name="cschsz/android_device_samsung_golden" path="device/samsung/golden" remote="github" revision="patch-1"/>
+     <project name="3liteking148/android_kernel_samsung_golden" path="kernel/samsung/golden" remote="github" revision="cm-13.0"/>
+     <project name="3liteking148/android_vendor_samsung_golden" path="vendor/samsung/golden" remote="github" revision="cm-13.0"/>
+     <project name="3liteking148/android_hardware_u8500" path="hardware/u8500" remote="github" revision="master"/>
+   </manifest>
+--------------------------------------------
+
+vim ~/lunch_golden.sh
+--------------------------------------------
+#!/bin/bash
+
+cd ~/android/carbon
+repo sync --force-sync
+cd ~/android/carbon/device/samsung/golden/patches
+./clearpatches.sh
+./patch.sh
+cd ~/android/carbon
+. build/envsetup.sh
+breakfast golden
+cat ~/android/carbon/build/core/version_defaults.mk | grep --color "PLATFORM_SECURITY_PATCH :="
+echo "============================================"
+read -p "brunch by pressing enter..."
+
+brunch golden
+echo "golden" | mail -s "golden build done!" $BUILD_DONE_EMAIL
+caja ~/android/carbon/out/target/product/golden
+--------------------------------------------
+chmod +x ~/lunch_golden.sh
