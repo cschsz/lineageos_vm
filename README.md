@@ -1,6 +1,15 @@
 # lineageos_vm
 Setting up the VM to compile LineageOS
 
+13.0 (setup_cm130.txt):
+* espresso3g
+* golden
+
+14.1 (setup_cm141.txt):
+* gtaxllte+gtaxlwifi
+* kminilte
+* santoswifi
+
 ### operating system
 ubuntu-mate-16.04.4-desktop-amd64.iso  
 sudo apt-get install mailutils ssmtp vim  
