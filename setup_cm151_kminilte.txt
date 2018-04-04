@@ -1,0 +1,36 @@
+mkdir -p ~/android/system
+cd ~/android/system
+
+ccache -M 50G
+repo init -u https://github.com/LineageOS/android.git -b lineage-15.1
+
+git config --global user.email $GITHUB_USER_EMAIL
+git config --global user.name $GITHUB_USER_NAME
+
+repo init -u https://github.com/LineageOS/android.git -b lineage-15.1
+
+mkdir -p .repo/local_manifests
+git clone https://github.com/cm-3470/android_.repo_local_manifests -b lineage-15.1 .repo/local_manifests
+
+vim ~/lunch_kminilte.sh
+--------------------------------------------
+#!/bin/bash
+
+cd ~/android/system
+repo sync
+
+cd ~/android/system/device/samsung/smdk3470-common/patch
+./apply.sh
+cd ~/android/system
+
+. build/envsetup.sh
+breakfast kminilte
+cat ~/android/system/build/core/version_defaults.mk | grep --color "PLATFORM_SECURITY_PATCH :="
+echo "============================================"
+read -p "brunch by pressing enter..."
+
+brunch kminilte
+echo "kminilte" | mail -s "kminilte build done!" $BUILD_DONE_EMAIL
+caja ~/android/system/out/target/product/kminilte
+--------------------------------------------
+chmod +x ~/lunch_kminilte.sh
