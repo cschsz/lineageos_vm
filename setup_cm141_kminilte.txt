@@ -18,6 +18,9 @@ vim ~/lunch_kminilte.sh
 
 cd ~/android/system
 repo sync
+cd ~/android/system/device/samsung/smdk3470-common/patch
+./apply.sh
+cd ~/android/system
 . build/envsetup.sh
 breakfast kminilte
 cat ~/android/system/build/core/version_defaults.mk | grep --color "PLATFORM_SECURITY_PATCH :="
