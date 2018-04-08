@@ -40,7 +40,7 @@ vim ~/lunch_gtaxllte.sh
 #!/bin/bash
 
 cd ~/android/system
-repo sync
+repo sync --force-sync
 . build/envsetup.sh
 breakfast gtaxllte
 cat ~/android/system/build/core/version_defaults.mk | grep --color "PLATFORM_SECURITY_PATCH :="
@@ -59,7 +59,7 @@ vim ~/lunch_gtaxlwifi.sh
 #!/bin/bash
 
 cd ~/android/system
-repo sync
+repo sync --force-sync
 . build/envsetup.sh
 breakfast gtaxlwifi
 cat ~/android/system/build/core/version_defaults.mk | grep --color "PLATFORM_SECURITY_PATCH :="
