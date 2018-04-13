@@ -21,7 +21,7 @@ vim .repo/local_manifests/local_manifest.xml
   <remove-project name="LineageOS/android_external_libhevc" />
   <project name="santos10-dev/android_external_libhevc" path="external/libhevc" remote="github" />
   <remove-project name="LineageOS/android_frameworks_base" />
-  <project name="santos10-dev/android_frameworks_base" path="frameworks/base" remote="github" />
+  <project name="cschsz/android_frameworks_base" path="frameworks/base" remote="github" />
   <remove-project name="LineageOS/android_frameworks_native" />
   <project name="santos10-dev/android_frameworks_native" path="frameworks/native" remote="github" />
   <remove-project name="LineageOS/android_hardware_intel_common_omx-components" />
@@ -52,12 +52,6 @@ vim ~/lunch_santoswifi.sh
 
 cd ~/android/system
 repo sync --force-sync
-cd ~/android/system/frameworks/base
-git remote add santos https://github.com/LineageOS/android_frameworks_base.git
-git fetch santos
-git merge santos/cm-14.1 -m merge "android_frameworks_base.git"
-git remote remove santos
-cd ~/android/system
 . build/envsetup.sh
 breakfast santos10wifi
 cat ~/android/system/build/core/version_defaults.mk | grep --color "PLATFORM_SECURITY_PATCH :="
