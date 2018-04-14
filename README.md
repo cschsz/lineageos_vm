@@ -12,13 +12,18 @@ Setting up the VM to compile LineageOS
 
 ### operating system
 ubuntu-mate-16.04.4-desktop-amd64.iso  
-sudo apt-get install mailutils ssmtp vim  
+sudo apt-get install mailutils ssmtp vim cifs-utils
 
 ### setup vim
 git clone https://github.com/cschsz/cfg ~/cfg  
 cd ~/cfg  
 ./install.sh  
 cd ~  
+
+### setup network (host-only adapter)
+sudo vim /etc/fstab
+//192.168.56.1/upload /media/upload  cifs  guest,uid=1000,iocharset=utf8  0  0
+//192.168.56.1/roms /media/roms  cifs  guest,uid=1000,iocharset=utf8  0  0
 
 ### setup email
 sudo vim /etc/ssmtp/ssmtp.conf  
