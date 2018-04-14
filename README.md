@@ -21,8 +21,8 @@ cd ~/cfg
 cd ~  
 
 ### setup network (host-only adapter)
-sudo vim /etc/fstab
-//192.168.56.1/upload /media/upload  cifs  guest,uid=1000,iocharset=utf8  0  0
+sudo vim /etc/fstab<br>
+//192.168.56.1/upload /media/upload  cifs  guest,uid=1000,iocharset=utf8  0  0<br>
 //192.168.56.1/roms /media/roms  cifs  guest,uid=1000,iocharset=utf8  0  0
 
 ### setup email
