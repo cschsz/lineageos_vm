@@ -23,12 +23,10 @@ cd ~/android/system/device/samsung/smdk3470-common/patch
 cd ~/android/system
 . build/envsetup.sh
 breakfast kminilte
-cat ~/android/system/build/core/version_defaults.mk | grep --color "PLATFORM_SECURITY_PATCH :="
-echo "============================================"
-read -p "brunch by pressing enter..."
-
 brunch kminilte
+
 echo "kminilte" | mail -s "kminilte build done!" $BUILD_DONE_EMAIL
+cat ~/android/system/build/core/version_defaults.mk | grep --color "PLATFORM_SECURITY_PATCH :="
 caja ~/android/system/out/target/product/kminilte
 --------------------------------------------
 chmod +x ~/lunch_kminilte.sh
