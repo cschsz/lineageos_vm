@@ -36,12 +36,10 @@ cd ~/android/carbon/device/samsung/golden/patches
 cd ~/android/carbon
 . build/envsetup.sh
 breakfast golden
-cat ~/android/carbon/build/core/version_defaults.mk | grep --color "PLATFORM_SECURITY_PATCH :="
-echo "============================================"
-read -p "brunch by pressing enter..."
-
 brunch golden
+
 echo "golden" | mail -s "golden build done!" $BUILD_DONE_EMAIL
+cat ~/android/carbon/build/core/version_defaults.mk | grep --color "PLATFORM_SECURITY_PATCH :="
 caja ~/android/carbon/out/target/product/golden
 --------------------------------------------
 chmod +x ~/lunch_golden.sh
