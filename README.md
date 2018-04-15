@@ -2,13 +2,13 @@
 Setting up the VM to compile LineageOS
 
 13.0 (setup_cm130.txt):
-* espresso3g
-* golden
+* espresso3g (~75GB)
+* golden (~75GB)
 
 14.1 (setup_cm141.txt):
-* gtaxllte+gtaxlwifi
+* gtaxllte+gtaxlwifi (~150GB)
 * kminilte
-* santoswifi
+* santoswifi (~150GB)
 
 ### operating system
 ubuntu-mate-16.04.4-desktop-amd64.iso  
