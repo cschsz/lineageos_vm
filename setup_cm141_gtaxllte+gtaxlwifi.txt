@@ -43,12 +43,10 @@ cd ~/android/system
 repo sync --force-sync
 . build/envsetup.sh
 breakfast gtaxllte
-cat ~/android/system/build/core/version_defaults.mk | grep --color "PLATFORM_SECURITY_PATCH :="
-echo "============================================"
-read -p "brunch by pressing enter..."
-
 brunch gtaxllte
+
 echo "gtaxllte" | mail -s "gtaxllte build done!" $BUILD_DONE_EMAIL
+cat ~/android/system/build/core/version_defaults.mk | grep --color "PLATFORM_SECURITY_PATCH :="
 caja ~/android/system/out/target/product/gtaxllte
 --------------------------------------------
 chmod +x ~/lunch_gtaxllte.sh
@@ -62,12 +60,10 @@ cd ~/android/system
 repo sync --force-sync
 . build/envsetup.sh
 breakfast gtaxlwifi
-cat ~/android/system/build/core/version_defaults.mk | grep --color "PLATFORM_SECURITY_PATCH :="
-echo "============================================"
-read -p "brunch by pressing enter..."
-
 brunch gtaxlwifi
+
 echo "gtaxlwifi" | mail -s "gtaxlwifi build done!" $BUILD_DONE_EMAIL
+cat ~/android/system/build/core/version_defaults.mk | grep --color "PLATFORM_SECURITY_PATCH :="
 caja ~/android/system/out/target/product/gtaxlwifi
 --------------------------------------------
 chmod +x ~/lunch_gtaxlwifi.sh
