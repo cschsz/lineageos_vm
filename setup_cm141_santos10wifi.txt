@@ -19,20 +19,20 @@ vim .repo/local_manifests/local_manifest.xml
 <manifest>
 
   <remove-project name="LineageOS/android_external_libavc" />
-  <project name="cschsz/android_external_libavc" path="external/libavc" remote="github" />
+  <project name="santos10-dev/android_external_libavc" path="external/libavc" remote="github" />
   <remove-project name="LineageOS/android_external_libhevc" />
-  <project name="cschsz/android_external_libhevc" path="external/libhevc" remote="github" />
+  <project name="santos10-dev/android_external_libhevc" path="external/libhevc" remote="github" />
   <remove-project name="LineageOS/android_frameworks_base" />
-  <project name="cschsz/android_frameworks_base" path="frameworks/base" remote="github" />
+  <project name="santos10-dev/android_frameworks_base" path="frameworks/base" remote="github" />
   <remove-project name="LineageOS/android_frameworks_native" />
   <project name="santos10-dev/android_frameworks_native" path="frameworks/native" remote="github" />
   <remove-project name="LineageOS/android_hardware_intel_common_omx-components" />
-  <project name="cschsz/android_hardware_intel_common_omx-components" path="hardware/intel/common/omx-components" remote="github" />
+  <project name="santos10-dev/android_hardware_intel_common_omx-components" path="hardware/intel/common/omx-components" remote="github" />
 
   <project name="LineageOS/android_external_stlport" path="external/stlport" />
   <project name="LineageOS/android_hardware_samsung" path="hardware/samsung" />
 
-  <project name="cschsz/android_device_samsung_santos10-common" path="device/samsung/santos10-common" remote="github" revision="cm-14.1" />
+  <project name="santos10-dev/android_device_samsung_santos10-common" path="device/samsung/santos10-common" remote="github" revision="cm-14.1" />
   <project name="santos10-dev/android_device_samsung_santos103g" path="device/samsung/santos103g" remote="github" revision="cm-14.1" />
   <project name="santos10-dev/android_device_samsung_santos10wifi" path="device/samsung/santos10wifi" remote="github" revision="cm-14.1" />
   <project name="santos10-dev/android_device_samsung_santos10lte" path="device/samsung/santos10lte" remote="github" revision="cm-14.1" />
