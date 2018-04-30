@@ -32,7 +32,7 @@ vim ~/lunch_kminilte.sh
 #!/bin/bash
 
 cd ~/android/system
-repo sync
+repo sync --force-sync
 cd ~/android/system/device/samsung/smdk3470-common/patch
 ./apply.sh
 cd ~/android/system
