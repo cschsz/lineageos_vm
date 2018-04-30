@@ -16,9 +16,7 @@ vim .repo/local_manifests/local_manifest.xml
 --------------------------------------------
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-  <project name="LineageOS/android_device_samsung_espresso3g" path="device/samsung/espresso3g" remote="github" revision="cm-13.0" />
   <project name="LineageOS/android_hardware_samsung" path="hardware/samsung" remote="github" revision="cm-13.0" />
-  <project name="LineageOS/android_packages_apps_SamsungServiceMode" path="packages/apps/SamsungServiceMode" remote="github" revision="cm-13.0" />
   <project name="TheMuppets/proprietary_vendor_samsung" path="vendor/samsung" remote="github" revision="cm-13.0" />
   <project name="TheMuppets/proprietary_vendor_ti" path="vendor/ti" remote="github" revision="master" />
 </manifest>
