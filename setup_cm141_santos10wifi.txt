@@ -64,3 +64,19 @@ cat ~/android/system/out/target/product/santos10wifi/obj/KERNEL_OBJ/include/conf
 caja ~/android/system/out/target/product/santos10wifi
 --------------------------------------------
 chmod +x ~/lunch_santoswifi.sh
+
+vim ~/dinner_santoswifi.sh
+--------------------------------------------
+#!/bin/bash
+
+cd ~/android/system
+. build/envsetup.sh
+breakfast santos10wifi
+brunch santos10wifi
+
+echo "santos10wifi" | mail -s "santos10wifi build done!" $BUILD_DONE_EMAIL
+cat ~/android/system/build/core/version_defaults.mk | grep --color "PLATFORM_SECURITY_PATCH :="
+cat ~/android/system/out/target/product/santos10wifi/obj/KERNEL_OBJ/include/config/kernel.release 
+caja ~/android/system/out/target/product/santos10wifi
+--------------------------------------------
+chmod +x ~/dinner_santoswifi.sh
