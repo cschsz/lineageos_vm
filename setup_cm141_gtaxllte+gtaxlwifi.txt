@@ -52,6 +52,22 @@ caja ~/android/system/out/target/product/gtaxllte
 --------------------------------------------
 chmod +x ~/lunch_gtaxllte.sh
 
+vim ~/dinner_gtaxllte.sh
+--------------------------------------------
+#!/bin/bash
+
+cd ~/android/system
+. build/envsetup.sh
+breakfast gtaxllte
+brunch gtaxllte
+
+echo "gtaxllte" | mail -s "gtaxllte build done!" $BUILD_DONE_EMAIL
+cat ~/android/system/build/core/version_defaults.mk | grep --color "PLATFORM_SECURITY_PATCH :="
+cat ~/android/system/out/target/product/gtaxllte/obj/KERNEL_OBJ/include/config/kernel.release 
+caja ~/android/system/out/target/product/gtaxllte
+--------------------------------------------
+chmod +x ~/dinner_gtaxllte.sh
+
 
 vim ~/lunch_gtaxlwifi.sh
 --------------------------------------------
@@ -69,3 +85,19 @@ cat ~/android/system/out/target/product/gtaxlwifi/obj/KERNEL_OBJ/include/config/
 caja ~/android/system/out/target/product/gtaxlwifi
 --------------------------------------------
 chmod +x ~/lunch_gtaxlwifi.sh
+
+vim ~/dinner_gtaxlwifi.sh
+--------------------------------------------
+#!/bin/bash
+
+cd ~/android/system
+. build/envsetup.sh
+breakfast gtaxlwifi
+brunch gtaxlwifi
+
+echo "gtaxlwifi" | mail -s "gtaxlwifi build done!" $BUILD_DONE_EMAIL
+cat ~/android/system/build/core/version_defaults.mk | grep --color "PLATFORM_SECURITY_PATCH :="
+cat ~/android/system/out/target/product/gtaxlwifi/obj/KERNEL_OBJ/include/config/kernel.release 
+caja ~/android/system/out/target/product/gtaxlwifi
+--------------------------------------------
+chmod +x ~/dinner_gtaxlwifi.sh
