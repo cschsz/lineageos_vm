@@ -43,3 +43,18 @@ cat ~/android/carbon/build/core/version_defaults.mk | grep --color "PLATFORM_SEC
 caja ~/android/carbon/out/target/product/golden
 --------------------------------------------
 chmod +x ~/lunch_golden.sh
+
+vim ~/dinner_golden.sh
+--------------------------------------------
+#!/bin/bash
+
+cd ~/android/carbon
+. build/envsetup.sh
+breakfast golden
+brunch golden
+
+echo "golden" | mail -s "golden build done!" $BUILD_DONE_EMAIL
+cat ~/android/carbon/build/core/version_defaults.mk | grep --color "PLATFORM_SECURITY_PATCH :="
+caja ~/android/carbon/out/target/product/golden
+--------------------------------------------
+chmod +x ~/dinner_golden.sh
