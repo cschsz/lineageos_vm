@@ -25,6 +25,7 @@ vim .repo/local_manifests/local_manifest.xml
   <project name="LineageOS/android_hardware_samsung" path="hardware/samsung" />
   <project name="LineageOS/android_external_stlport" path="external/stlport" />
 </manifest>  
+--------------------------------------------
 
 vim ~/lunch_kminilte.sh
 --------------------------------------------
