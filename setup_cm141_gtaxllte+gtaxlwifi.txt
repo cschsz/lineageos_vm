@@ -21,7 +21,7 @@ vim .repo/local_manifests/local_manifest.xml
   
   <project name="Valera1978/android_device_samsung_gtaxllte" path="device/samsung/gtaxllte" remote="github" />
   <project name="Valera1978/android_device_samsung_gtaxlwifi" path="device/samsung/gtaxlwifi" remote="github" />
-  <project name="cschsz/android_kernel_samsung_exynos7870" path="kernel/samsung/exynos7870" remote="github" revision="cm-14.1_perm" />
+  <project name="cschsz/android_kernel_samsung_exynos7870" path="kernel/samsung/exynos7870" remote="github" revision="CVE-testing" />
   <project name="Valera1978/android_vendor_samsung_gtaxllte" path="vendor/samsung/gtaxllte" remote="github" />
   <project name="Valera1978/android_vendor_samsung_gtaxlwifi" path="vendor/samsung/gtaxlwifi" remote="github" />
   <project name="Valera1978/android_hardware_samsung_slsi-cm_exynos" path="hardware/samsung_slsi-cm/exynos" remote="github" />
