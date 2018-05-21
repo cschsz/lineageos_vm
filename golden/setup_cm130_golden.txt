@@ -1,7 +1,12 @@
+cp lunch_golden.sh ~
+cp dinner_golden.sh ~
+chmod +x ~/lunch_golden.sh
+chmod +x ~/dinner_golden.sh
+
 mkdir -p ~/android/carbon
 cd ~/android/carbon
 
-ccache -M 50G
+ccache -M 25G
 
 repo init -u https://github.com/LineageOS/android.git -b cm-13.0
 
@@ -23,38 +28,3 @@ vim .repo/local_manifests/local_manifest.xml
      <project name="3liteking148/android_hardware_u8500" path="hardware/u8500" remote="github" revision="master"/>
    </manifest>
 --------------------------------------------
-
-vim ~/lunch_golden.sh
---------------------------------------------
-#!/bin/bash
-
-cd ~/android/carbon
-repo sync --force-sync
-cd ~/android/carbon/device/samsung/golden/patches
-./clearpatches.sh
-./patch.sh
-cd ~/android/carbon
-. build/envsetup.sh
-breakfast golden
-brunch golden
-
-echo "golden" | mail -s "golden build done!" $BUILD_DONE_EMAIL
-cat ~/android/carbon/build/core/version_defaults.mk | grep --color "PLATFORM_SECURITY_PATCH :="
-caja ~/android/carbon/out/target/product/golden
---------------------------------------------
-chmod +x ~/lunch_golden.sh
-
-vim ~/dinner_golden.sh
---------------------------------------------
-#!/bin/bash
-
-cd ~/android/carbon
-. build/envsetup.sh
-breakfast golden
-brunch golden
-
-echo "golden" | mail -s "golden build done!" $BUILD_DONE_EMAIL
-cat ~/android/carbon/build/core/version_defaults.mk | grep --color "PLATFORM_SECURITY_PATCH :="
-caja ~/android/carbon/out/target/product/golden
---------------------------------------------
-chmod +x ~/dinner_golden.sh
