@@ -1,3 +1,8 @@
+cp lunch_kminilte.sh ~
+cp dinner_kminilte.sh ~
+chmod +x ~/lunch_kminilte.sh
+chmod +x ~/dinner_kminilte.sh
+
 mkdir -p ~/android/system
 cd ~/android/system
 
