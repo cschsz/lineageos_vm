@@ -15,6 +15,8 @@ git config --global user.name $GITHUB_USER_NAME
 
 repo init -u https://github.com/LineageOS/android.git -b cm-13.0
 
+mkdir -p .repo/local_manifests
+
 vim .repo/local_manifests/local_manifest.xml
 --------------------------------------------
 <?xml version="1.0" encoding="UTF-8"?>
