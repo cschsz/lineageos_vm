@@ -22,7 +22,7 @@ vim .repo/local_manifests/local_manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
    <manifest>
      <project name="LineageOS/android_external_stlport" remote="github" path="external/stlport" revision="cm-13.0" />
-     <project name="cschsz/android_device_samsung_golden" path="device/samsung/golden" remote="github" revision="patch-1"/>
+     <project name="cschsz/android_device_samsung_golden" path="device/samsung/golden" remote="github" revision="fix-compile-error"/>
      <project name="3liteking148/android_kernel_samsung_golden" path="kernel/samsung/golden" remote="github" revision="cm-13.0"/>
      <project name="3liteking148/android_vendor_samsung_golden" path="vendor/samsung/golden" remote="github" revision="cm-13.0"/>
      <project name="3liteking148/android_hardware_u8500" path="hardware/u8500" remote="github" revision="master"/>
