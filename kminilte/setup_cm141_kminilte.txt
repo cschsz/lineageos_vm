@@ -1,3 +1,8 @@
+cp lunch_kminilte.sh ~
+cp dinner_kminilte.sh ~
+chmod +x ~/lunch_kminilte.sh
+chmod +x ~/dinner_kminilte.sh
+
 mkdir -p ~/android/system
 cd ~/android/system
 
@@ -28,39 +33,3 @@ vim .repo/local_manifests/local_manifest.xml
   <project name="LineageOS/android_external_busybox" path="external/busybox" remote="github" />
 </manifest>  
 --------------------------------------------
-
-vim ~/lunch_kminilte.sh
---------------------------------------------
-#!/bin/bash
-
-cd ~/android/system
-repo sync --force-sync
-cd ~/android/system/device/samsung/smdk3470-common/patch
-./apply.sh
-cd ~/android/system
-. build/envsetup.sh
-breakfast kminilte
-brunch kminilte
-
-echo "kminilte" | mail -s "kminilte build done!" $BUILD_DONE_EMAIL
-cat ~/android/system/build/core/version_defaults.mk | grep --color "PLATFORM_SECURITY_PATCH :="
-cat ~/android/system/out/target/product/kminilte/obj/KERNEL_OBJ/include/config/kernel.release 
-caja ~/android/system/out/target/product/kminilte
---------------------------------------------
-chmod +x ~/lunch_kminilte.sh
-
-vim ~/dinner_kminilte.sh
---------------------------------------------
-#!/bin/bash
-
-cd ~/android/system
-. build/envsetup.sh
-breakfast kminilte
-brunch kminilte
-
-echo "kminilte" | mail -s "kminilte build done!" $BUILD_DONE_EMAIL
-cat ~/android/system/build/core/version_defaults.mk | grep --color "PLATFORM_SECURITY_PATCH :="
-cat ~/android/system/out/target/product/kminilte/obj/KERNEL_OBJ/include/config/kernel.release 
-caja ~/android/system/out/target/product/kminilte
---------------------------------------------
-chmod +x ~/dinner_kminilte.sh

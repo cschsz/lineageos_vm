@@ -1,0 +1,28 @@
+cp lunch_espresso3g.sh ~
+cp dinner_espresso3g.sh ~
+chmod +x ~/lunch_espresso3g.sh
+chmod +x ~/dinner_espresso3g.sh
+
+mkdir -p ~/android/lineage
+cd ~/android/lineage
+
+ccache -M 25G
+
+repo init -u https://github.com/LineageOS/android.git -b cm-13.0
+
+git config --global user.email $GITHUB_USER_EMAIL
+git config --global user.name $GITHUB_USER_NAME
+
+repo init -u https://github.com/LineageOS/android.git -b cm-13.0
+
+mkdir -p .repo/local_manifests
+
+vim .repo/local_manifests/local_manifest.xml
+--------------------------------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <project name="LineageOS/android_hardware_samsung" path="hardware/samsung" remote="github" revision="cm-13.0" />
+  <project name="TheMuppets/proprietary_vendor_samsung" path="vendor/samsung" remote="github" revision="cm-13.0" />
+  <project name="TheMuppets/proprietary_vendor_ti" path="vendor/ti" remote="github" revision="master" />
+</manifest>
+--------------------------------------------
