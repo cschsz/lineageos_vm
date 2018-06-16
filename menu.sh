@@ -11,44 +11,17 @@ CHOICE_HEIGHT=5
 BACKTITLE="LineageOS"
 TITLE="Compiling"
 ZIPPATH="/mnt/Android/_builds"
-DEVPATH=""
 
 # device
-OPTIONS=(1 "gtaxllte"
-         2 "gtaxlwifi"
-         3 "santos10wifi"
-         4 "kminilte")
-
-CHOICE=$(dialog --clear \
-                --backtitle "$BACKTITLE" \
-                --title "$TITLE" \
-                --menu "Choose device" \
-                $HEIGHT $WIDTH $CHOICE_HEIGHT \
-                "${OPTIONS[@]}" \
-                2>&1 >/dev/tty)
-
+DEVICES=$(dialog --backtitle "$BACKTITLE" \
+              --title "$TITLE" \
+              --checklist "Choose device(s)" 20 75 5 \
+                          "gtaxllte" "Samsung Galaxy Tab A LTE" off \
+                          "gtaxlwifi" "Samsung Galaxy Tab A Wifi" off \
+                          "santos10wifi" "Samsung Galaxy Tab 3" off \
+                          "kminilte" "Samsung Galaxy S5 mini" off \
+                          2>&1 >/dev/tty)
 clear
-case $CHOICE in
-        1)
-            TITLE="gtaxllte"
-            DEVPATH="/mnt/Android/gtaxl"
-            ;;
-        2)
-            TITLE="gtaxlwifi"
-            DEVPATH="/mnt/Android/gtaxl"
-            ;;
-        3)
-            TITLE="santos10wifi"
-            DEVPATH="/mnt/Android/santos10"
-            ;;
-        4)
-            TITLE="kminilte"
-            DEVPATH="/mnt/Android/kminilte"
-            ;;
-        *)
-            echo "Canceled"
-            exit
-esac
 
 # type
 OPTIONS=(1 "rebuild"
@@ -64,23 +37,7 @@ CHOICE=$(dialog --clear \
                 "${OPTIONS[@]}" \
                 2>&1 >/dev/tty)
 
-# start
-dialog --clear \
-       --backtitle "$BACKTITLE" \
-       --title "Sure" \
-       --yesno "Start $TITLE?" 7 60 \
-       2>&1 >/dev/tty
-YESNO=$?
-clear
-case $YESNO in
-    0)
-        echo "Running..."
-        ;;
-    *)
-        echo "Canceled"
-        exit
-        ;;
-esac
+echo $CHOICE
 
 # functions
 move_zips () {
@@ -117,37 +74,59 @@ repo_clear () {
     make clobber
 }
 
+# start
 clear
-case $CHOICE in
-    1)
-        echo $TITLE: "rebuild"
-        repo_clear $DEVPATH $TITLE
-        repo_sync $DEVPATH $TITLE
-        repo_build $DEVPATH $TITLE
-        print_status $DEVPATH $TITLE
-        move_zips $DEVPATH $TITLE
-        ;;
-    2)
-        echo $TITLE: "build"
-        repo_sync $DEVPATH $TITLE
-        repo_build $DEVPATH $TITLE
-        print_status $DEVPATH $TITLE
-        move_zips $DEVPATH $TITLE
-        ;;
-    3)
-        echo $TITLE: "compile"
-        repo_build $DEVPATH $TITLE
-        print_status $DEVPATH $TITLE
-        move_zips $DEVPATH $TITLE
-        ;;
-    4)
-        echo $TITLE: "sync"
-        repo_sync $DEVPATH $TITLE
-        print_status $DEVPATH $TITLE
-        ;;
-    *)
-        echo "Canceled"
-        exit
-esac
+for DEVICES in $DEVICES
+do
+    case $DEVICES in
+        "gtaxllte" )
+            DEVPATH="/mnt/Android/gtaxl"
+            ;;
+        "gtaxlwifi" )
+            DEVPATH="/mnt/Android/gtaxl"
+            ;;
+        "santos10wifi" )
+            DEVPATH="/mnt/Android/santos10"
+            ;;
+        "kminilte" )
+            DEVPATH="/mnt/Android/kminilte"
+            ;;
+        * )
+            echo "Canceled [$DEVICES]"
+            exit
+            ;;
+    esac
 
-read -p "Press any key..."
+    case $CHOICE in
+        1)
+            echo $DEVICES: "rebuild"
+            repo_clear $DEVPATH $DEVICES
+            repo_sync $DEVPATH $DEVICES
+            repo_build $DEVPATH $DEVICES
+            print_status $DEVPATH $DEVICES
+            move_zips $DEVPATH $DEVICES
+            ;;
+        2)
+            echo $DEVICES: "build"
+            repo_sync $DEVPATH $DEVICES
+            repo_build $DEVPATH $DEVICES
+            print_status $DEVPATH $DEVICES
+            move_zips $DEVPATH $DEVICES
+            ;;
+        3)
+            echo $TITLE: "compile"
+            repo_build $DEVPATH $DEVICES
+            print_status $DEVPATH $DEVICES
+            move_zips $DEVPATH $DEVICES
+            ;;
+        4)
+            echo $DEVICES: "sync"
+            repo_sync $DEVPATH $DEVICES
+            print_status $DEVPATH $DEVICES
+            ;;
+        *)
+            echo "Canceled [$CHOICE]"
+            exit
+            ;;
+    esac
+done
