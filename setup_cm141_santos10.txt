@@ -1,23 +1,10 @@
-cp lunch_santos10.sh ~
-cp dinner_santos10.sh ~
-chmod +x ~/lunch_santos10.sh
-chmod +x ~/dinner_santos10.sh
-
-sudo apt-get install yasm
-
-mkdir -p ~/android/system
-cd ~/android/system
+mkdir -p santos10
+cd santos10
 
 ccache -M 25G
 repo init -u https://github.com/LineageOS/android.git -b cm-14.1
 
-git config --global user.email $GITHUB_USER_EMAIL
-git config --global user.name $GITHUB_USER_NAME
-
-repo init -u https://github.com/LineageOS/android.git -b cm-14.1
-
 mkdir -p .repo/local_manifests
-
 vim .repo/local_manifests/local_manifest.xml
 --------------------------------------------
 <?xml version="1.0" encoding="UTF-8"?>

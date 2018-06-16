@@ -1,17 +1,7 @@
-cp lunch_kminilte.sh ~
-cp dinner_kminilte.sh ~
-chmod +x ~/lunch_kminilte.sh
-chmod +x ~/dinner_kminilte.sh
-
-mkdir -p ~/android/system
-cd ~/android/system
+mkdir -p kminilte
+cd kminilte
 
 ccache -M 50G
-repo init -u https://github.com/LineageOS/android.git -b cm-14.1
-
-git config --global user.email $GITHUB_USER_EMAIL
-git config --global user.name $GITHUB_USER_NAME
-
 repo init -u https://github.com/LineageOS/android.git -b cm-14.1
 
 mkdir -p .repo/local_manifests
