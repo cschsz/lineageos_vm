@@ -1,10 +1,17 @@
 #!/bin/bash
+if [ $USE_NINJA != "false" ]
+then
+    echo "Wrong settings detected!"
+    read -p "Press any key..."
+fi
+
 HEIGHT=15
 WIDTH=40
 CHOICE_HEIGHT=5
 BACKTITLE="LineageOS"
 TITLE="Compiling"
-MPATH=""
+ZIPPATH="/mnt/Android/_builds"
+DEVPATH=""
 
 # device
 OPTIONS=(1 "gtaxllte"
@@ -24,19 +31,19 @@ clear
 case $CHOICE in
         1)
             TITLE="gtaxllte"
-            MPATH="/mnt/VMsA/gtaxl"
+            DEVPATH="/mnt/Android/gtaxl"
             ;;
         2)
             TITLE="gtaxlwifi"
-            MPATH="/mnt/VMsA/gtaxl"
+            DEVPATH="/mnt/Android/gtaxl"
             ;;
         3)
             TITLE="santos10wifi"
-            MPATH="/mnt/VMsA/santos10"
+            DEVPATH="/mnt/Android/santos10"
             ;;
         4)
             TITLE="kminilte"
-            MPATH="/mnt/VMsA/kminilte"
+            DEVPATH="/mnt/Android/kminilte"
             ;;
         *)
             echo "Canceled"
@@ -44,10 +51,10 @@ case $CHOICE in
 esac
 
 # type
-OPTIONS=(1 "full build with make clean"
-         2 "full build with repo sync"
-         3 "just compile"
-         4 "just sync")
+OPTIONS=(1 "rebuild"
+         2 "build"
+         3 "compile"
+         4 "sync")
 
 CHOICE=$(dialog --clear \
                 --backtitle "$BACKTITLE" \
@@ -57,7 +64,7 @@ CHOICE=$(dialog --clear \
                 "${OPTIONS[@]}" \
                 2>&1 >/dev/tty)
 
-# sure
+# start
 dialog --clear \
        --backtitle "$BACKTITLE" \
        --title "Sure" \
@@ -66,21 +73,26 @@ dialog --clear \
 YESNO=$?
 clear
 case $YESNO in
-    0) 
+    0)
         echo "Running..."
         ;;
-    *) 
+    *)
         echo "Canceled"
         exit
         ;;
 esac
 
 # functions
+move_zips () {
+    mv $1/out/target/product/$2/*.zip* $ZIPPATH
+}
+
 print_status () {
     #echo $2 | mail -s "$2 build done!" $BUILD_DONE_EMAIL
     echo "============================================"
     cat $1/build/core/version_defaults.mk | grep "PLATFORM_SECURITY_PATCH :="
     cat $1/out/target/product/$2/obj/KERNEL_OBJ/include/config/kernel.release
+    ls -lh $1/out/target/product/$2/kernel
 }
 
 repo_sync () {
@@ -88,8 +100,8 @@ repo_sync () {
     repo sync --force-sync
     if [ $2 == "kminilte" ]
     then
-        echo cd $1/device/samsung/smdk3470-common/patch
-        echo ./apply.sh
+        cd $1/device/samsung/smdk3470-common/patch
+        ./apply.sh
     fi
 }
 
@@ -102,35 +114,40 @@ repo_build () {
 
 repo_clear () {
     cd $1
-    echo make clean
+    make clobber
 }
 
 clear
 case $CHOICE in
     1)
-        echo $TITLE: "full build with make clean"
-        repo_clear $MPATH $TITLE
-        repo_sync $MPATH $TITLE
-        repo_build $MPATH $TITLE            
-        print_status $MPATH $TITLE
+        echo $TITLE: "rebuild"
+        repo_clear $DEVPATH $TITLE
+        repo_sync $DEVPATH $TITLE
+        repo_build $DEVPATH $TITLE
+        print_status $DEVPATH $TITLE
+        move_zips $DEVPATH $TITLE
         ;;
     2)
-        echo $TITLE: "full build with repo sync"
-        repo_sync $MPATH $TITLE
-        repo_build $MPATH $TITLE            
-        print_status $MPATH $TITLE
+        echo $TITLE: "build"
+        repo_sync $DEVPATH $TITLE
+        repo_build $DEVPATH $TITLE
+        print_status $DEVPATH $TITLE
+        move_zips $DEVPATH $TITLE
         ;;
     3)
-        echo $TITLE: "just compile"
-        repo_build $MPATH $TITLE
-        print_status $MPATH $TITLE
+        echo $TITLE: "compile"
+        repo_build $DEVPATH $TITLE
+        print_status $DEVPATH $TITLE
+        move_zips $DEVPATH $TITLE
         ;;
     4)
-        echo $TITLE: "just sync"
-        repo_sync $MPATH $TITLE
-        print_status $MPATH $TITLE
+        echo $TITLE: "sync"
+        repo_sync $DEVPATH $TITLE
+        print_status $DEVPATH $TITLE
         ;;
     *)
         echo "Canceled"
         exit
 esac
+
+read -p "Press any key..."

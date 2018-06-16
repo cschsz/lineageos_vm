@@ -11,7 +11,7 @@ vim .repo/local_manifests/local_manifest.xml
 <manifest>
   <project name="cm-3470/android_device_samsung_kminilte" path="device/samsung/kminilte" remote="github" />
   <project name="cm-3470/android_vendor_samsung_kminilte" path="vendor/samsung/kminilte" remote="github" />
-  <project name="cschsz/android_kernel_samsung_kminilte" path="kernel/samsung/kminilte" remote="github" revision="CVE-testing" />  
+  <project name="cschsz/android_kernel_samsung_kminilte" path="kernel/samsung/kminilte" remote="github" revision="CVE-testing" />
   <project name="cm-3470/android_device_samsung_smdk3470-common" path="device/samsung/smdk3470-common" remote="github" />
   <project name="cm-3470/android_hardware_samsung_slsi_exynos3470" path="hardware/samsung_slsi/exynos3470" remote="github" />
   <project name="LineageOS/android_packages_apps_SamsungServiceMode" path="packages/apps/SamsungServiceMode" />
@@ -21,5 +21,5 @@ vim .repo/local_manifests/local_manifest.xml
   <project name="LineageOS/android_external_stlport" path="external/stlport" />
   <project name="omnirom/android_bootable_recovery" path="bootable/recovery-twrp" remote="github" revision="android-7.1" />
   <project name="LineageOS/android_external_busybox" path="external/busybox" remote="github" />
-</manifest>  
+</manifest>
 --------------------------------------------
