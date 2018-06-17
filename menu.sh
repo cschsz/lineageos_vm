@@ -53,6 +53,9 @@ print_status () {
 }
 
 repo_sync () {
+    echo "--------------------------------------------"
+    echo repo_sync: $1 $2
+    echo "--------------------------------------------"
     cd $1
     repo sync --force-sync
     if [ $2 == "kminilte" ]
@@ -63,6 +66,9 @@ repo_sync () {
 }
 
 repo_build () {
+    echo "--------------------------------------------"
+    echo repo_build: $1 $2
+    echo "--------------------------------------------"
     cd $1
     . build/envsetup.sh
     breakfast $2
@@ -70,6 +76,9 @@ repo_build () {
 }
 
 repo_clear () {
+    echo "--------------------------------------------"
+    echo repo_clear: $1 $2
+    echo "--------------------------------------------"
     cd $1
     . build/envsetup.sh
     breakfast $2
@@ -116,7 +125,7 @@ do
             move_zips $DEVPATH $DEVICES
             ;;
         3)
-            echo $TITLE: "compile"
+            echo $DEVICES: "compile"
             repo_build $DEVPATH $DEVICES
             print_status $DEVPATH $DEVICES
             move_zips $DEVPATH $DEVICES
