@@ -7,7 +7,7 @@ fi
 
 HEIGHT=15
 WIDTH=40
-CHOICE_HEIGHT=5
+CHOICE_HEIGHT=6
 BACKTITLE="LineageOS"
 TITLE="Compiling"
 ZIPPATH="/mnt/Android/_builds"
@@ -44,6 +44,9 @@ echo $CHOICE
 
 # functions
 move_zips () {
+    echo "--------------------------------------------"
+    echo move_zips: $1 $2
+    echo "--------------------------------------------"
     mv $1/out/target/product/$2/*.zip* $ZIPPATH
 }
 
@@ -116,6 +119,7 @@ do
 
     case $CHOICE in
         1)
+            echo "============================================"
             echo $DEVICES: "clean & sync & compile"
             repo_clear $DEVPATH $DEVICES
             repo_sync $DEVPATH $DEVICES
@@ -124,6 +128,7 @@ do
             move_zips $DEVPATH $DEVICES
             ;;
         2)
+            echo "============================================"
             echo $DEVICES: "sync & compile"
             repo_sync $DEVPATH $DEVICES
             repo_build $DEVPATH $DEVICES
@@ -131,23 +136,28 @@ do
             move_zips $DEVPATH $DEVICES
             ;;
         3)
+            echo "============================================"
             echo $DEVICES: "clean & compile"
+            repo_clear $DEVPATH $DEVICES
             repo_build $DEVPATH $DEVICES
             print_status $DEVPATH $DEVICES
             move_zips $DEVPATH $DEVICES
             ;;
         4)
+            echo "============================================"
             echo $DEVICES: "compile"
             repo_build $DEVPATH $DEVICES
             print_status $DEVPATH $DEVICES
             move_zips $DEVPATH $DEVICES
             ;;
         5)
+            echo "============================================"
             echo $DEVICES: "sync"
             repo_sync $DEVPATH $DEVICES
             print_status $DEVPATH $DEVICES
             ;;
         6)
+            echo "============================================"
             echo $DEVICES: "clean"
             repo_clear $DEVPATH $DEVICES
             print_status $DEVPATH $DEVICES
