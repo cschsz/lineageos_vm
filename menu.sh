@@ -71,6 +71,8 @@ repo_build () {
 
 repo_clear () {
     cd $1
+    . build/envsetup.sh
+    breakfast $2
     make clobber
 }
 
