@@ -25,10 +25,12 @@ DEVICES=$(dialog --backtitle "$BACKTITLE" \
 clear
 
 # type
-OPTIONS=(1 "rebuild"
-         2 "build"
-         3 "compile"
-         4 "sync")
+OPTIONS=(1 "clean & sync & compile"
+         2 "sync & compile"
+         3 "clean & compile"
+         4 "compile"
+         5 "sync"
+         6 "clean")
 
 CHOICE=$(dialog --clear \
                 --backtitle "$BACKTITLE" \
@@ -114,7 +116,7 @@ do
 
     case $CHOICE in
         1)
-            echo $DEVICES: "rebuild"
+            echo $DEVICES: "clean & sync & compile"
             repo_clear $DEVPATH $DEVICES
             repo_sync $DEVPATH $DEVICES
             repo_build $DEVPATH $DEVICES
@@ -122,21 +124,32 @@ do
             move_zips $DEVPATH $DEVICES
             ;;
         2)
-            echo $DEVICES: "build"
+            echo $DEVICES: "sync & compile"
             repo_sync $DEVPATH $DEVICES
             repo_build $DEVPATH $DEVICES
             print_status $DEVPATH $DEVICES
             move_zips $DEVPATH $DEVICES
             ;;
         3)
-            echo $DEVICES: "compile"
+            echo $DEVICES: "clean & compile"
             repo_build $DEVPATH $DEVICES
             print_status $DEVPATH $DEVICES
             move_zips $DEVPATH $DEVICES
             ;;
         4)
+            echo $DEVICES: "compile"
+            repo_build $DEVPATH $DEVICES
+            print_status $DEVPATH $DEVICES
+            move_zips $DEVPATH $DEVICES
+            ;;
+        5)
             echo $DEVICES: "sync"
             repo_sync $DEVPATH $DEVICES
+            print_status $DEVPATH $DEVICES
+            ;;
+        6)
+            echo $DEVICES: "clean"
+            repo_clear $DEVPATH $DEVICES
             print_status $DEVPATH $DEVICES
             ;;
         *)
