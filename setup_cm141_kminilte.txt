@@ -11,7 +11,7 @@ vim .repo/local_manifests/local_manifest.xml
 <manifest>
   <project name="cm-3470/android_device_samsung_kminilte" path="device/samsung/kminilte" remote="github" />
   <project name="cm-3470/android_vendor_samsung_kminilte" path="vendor/samsung/kminilte" remote="github" />
-  <project name="cschsz/android_kernel_samsung_kminilte" path="kernel/samsung/kminilte" remote="github" revision="CVE-testing" />
+  <!-- <project name="cschsz/android_kernel_samsung_kminilte" path="kernel/samsung/kminilte" remote="github" revision="CVE-stable" /> -->
   <project name="cm-3470/android_device_samsung_smdk3470-common" path="device/samsung/smdk3470-common" remote="github" />
   <project name="cm-3470/android_hardware_samsung_slsi_exynos3470" path="hardware/samsung_slsi/exynos3470" remote="github" />
   <project name="LineageOS/android_packages_apps_SamsungServiceMode" path="packages/apps/SamsungServiceMode" />
@@ -23,3 +23,8 @@ vim .repo/local_manifests/local_manifest.xml
   <project name="LineageOS/android_external_busybox" path="external/busybox" remote="github" />
 </manifest>
 --------------------------------------------
+
+git clone https://github.com/cschsz/android_kernel_samsung_kminilte.git ./kernel/samsung/kminilte
+cd ./kernel/samsung/kminilte
+git remote add linux https://github.com/torvalds/linux
+git fetch --all

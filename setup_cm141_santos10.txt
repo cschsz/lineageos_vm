@@ -30,7 +30,7 @@ vim .repo/local_manifests/local_manifest.xml
   <project name="santos10-dev/android_device_samsung_santos10wifi" path="device/samsung/santos10wifi" remote="github" revision="cm-14.1" />
   <project name="santos10-dev/android_device_samsung_santos10lte" path="device/samsung/santos10lte" remote="github" revision="cm-14.1" />
 
-  <project name="cschsz/android_kernel_samsung_santos10" path="kernel/samsung/santos10" remote="github" revision="CVE-testing" />
+  <!-- <project name="cschsz/android_kernel_samsung_santos10" path="kernel/samsung/santos10" remote="github" revision="CVE-stable" /> -->
 
   <project name="santos10-dev/proprietary_vendor_samsung_santos10-common" path="vendor/samsung/santos10-common" remote="github" revision="cm-14.1" />
   <project name="santos10-dev/proprietary_vendor_samsung_santos103g" path="vendor/samsung/santos103g" remote="github" revision="cm-14.1" />
@@ -39,3 +39,8 @@ vim .repo/local_manifests/local_manifest.xml
 
 </manifest>
 --------------------------------------------
+
+git clone https://github.com/cschsz/android_kernel_samsung_santos10.git ./kernel/samsung/santos10
+cd ./kernel/samsung/santos10
+git remote add linux https://github.com/torvalds/linux
+git fetch --all

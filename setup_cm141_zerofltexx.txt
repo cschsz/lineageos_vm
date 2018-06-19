@@ -10,8 +10,19 @@ vim .repo/local_manifests/local_manifest.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
 
+  <!-- <project name="cschsz/android_kernel_samsung_exynos7420" path="kernel/samsung/exynos7420" remote="github" revision="CVE-stable" /> -->
+
   <project name="TheMuppets/proprietary_vendor_samsung" path="vendor/samsung" remote="github" revision="cm-14.1" />
   <project name="TheMuppets/proprietary_vendor_ti" path="vendor/ti" remote="github" revision="master" />
 
 </manifest>
 --------------------------------------------
+
+vim .repo/local_manifests/roomservice.xml
+clear android_kernel_samsung_exynos7420
+
+rm ./kernel/samsung/exynos7420 -rf
+git clone https://github.com/cschsz/android_kernel_samsung_exynos7420.git ./kernel/samsung/exynos7420
+cd ./kernel/samsung/exynos7420
+git remote add linux https://github.com/torvalds/linux
+git fetch --all
