@@ -5,9 +5,6 @@ then
     read -p "Press any key..."
 fi
 
-HEIGHT=15
-WIDTH=40
-CHOICE_HEIGHT=6
 BACKTITLE="LineageOS"
 TITLE="Compiling"
 ZIPPATH="/mnt/Android/_builds"
@@ -15,10 +12,12 @@ ZIPPATH="/mnt/Android/_builds"
 # device
 DEVICES=$(dialog --backtitle "$BACKTITLE" \
               --title "$TITLE" \
-              --checklist "Choose device(s)" 20 75 5 \
+              --checklist "Choose device(s)" 20 75 10 \
                           "gtaxllte" "Samsung Galaxy Tab A LTE" off \
                           "gtaxlwifi" "Samsung Galaxy Tab A Wifi" off \
-                          "santos10wifi" "Samsung Galaxy Tab 3" off \
+                          "santos10wifi" "Samsung Galaxy Tab 3 Wifi" off \
+                          "santos103g" "Samsung Galaxy Tab 3 3G" off \
+                          "santos10lte" "Samsung Galaxy Tab 3 LTE" off \
                           "kminilte" "Samsung Galaxy S5 mini" off \
                           "zerofltexx" "Samsung Galaxy S6" off \
                           2>&1 >/dev/tty)
@@ -36,7 +35,7 @@ CHOICE=$(dialog --clear \
                 --backtitle "$BACKTITLE" \
                 --title "$TITLE" \
                 --menu "Choose type" \
-                $HEIGHT $WIDTH $CHOICE_HEIGHT \
+                15 40 6 \
                 "${OPTIONS[@]}" \
                 2>&1 >/dev/tty)
 
@@ -105,11 +104,17 @@ do
         "santos10wifi" )
             DEVPATH="/mnt/Android/santos10"
             ;;
+        "santos103g" )
+            DEVPATH="/mnt/Android/santos10"
+            ;;
+        "santos10lte" )
+            DEVPATH="/mnt/Android/santos10"
+            ;;
         "kminilte" )
             DEVPATH="/mnt/Android/kminilte"
             ;;
         "zerofltexx" )
-            DEVPATH="/mnt/Android/zerofltexx"
+            DEVPATH="/mnt/VMsA/zerofltexx"
             ;;
         * )
             echo "Canceled [$DEVICES]"
