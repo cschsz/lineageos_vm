@@ -28,6 +28,7 @@ DEVICES=$(dialog --backtitle "$BACKTITLE" \
                           "kminilte" "Samsung Galaxy S5 mini" off \
                           "zerofltexx" "Samsung Galaxy S6" off \
                           "golden" "Samsung Galaxy S3 mini" off \
+                          "espresso3g" "Samsung Galaxy Tab 2" off \
                           2>&1 >/dev/tty)
 clear
 
@@ -132,6 +133,9 @@ do
             ;;
         "golden" )
             DEVPATH="/mnt/Android/golden"
+            ;;
+        "espresso3g" )
+            DEVPATH="/mnt/VMsA/espresso"
             ;;
         * )
             echo "Canceled [$DEVICES]"
