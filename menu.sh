@@ -129,13 +129,13 @@ do
             DEVPATH="/mnt/Android/kminilte"
             ;;
         "zerofltexx" )
-            DEVPATH="/mnt/VMsA/zerofltexx"
+            DEVPATH="/mnt/VMs/zerofltexx"
             ;;
         "golden" )
             DEVPATH="/mnt/Android/golden"
             ;;
         "espresso3g" )
-            DEVPATH="/mnt/VMsA/espresso"
+            DEVPATH="/mnt/VMs/espresso"
             ;;
         * )
             echo "Canceled [$DEVICES]"
