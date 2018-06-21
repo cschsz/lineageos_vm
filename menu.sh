@@ -5,6 +5,13 @@ then
     read -p "Press any key..."
 fi
 
+export USE_CCACHE=1
+export USE_NINJA=false
+export CCACHE_COMPRESS=1
+export ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx4G"
+export JACK_SERVER_VM_ARGUMENTS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx4g"
+export EXPERIMENTAL_USE_JAVA8=true
+
 BACKTITLE="LineageOS"
 TITLE="Compiling"
 ZIPPATH="/mnt/Android/_builds"
@@ -20,6 +27,7 @@ DEVICES=$(dialog --backtitle "$BACKTITLE" \
                           "santos10lte" "Samsung Galaxy Tab 3 LTE" off \
                           "kminilte" "Samsung Galaxy S5 mini" off \
                           "zerofltexx" "Samsung Galaxy S6" off \
+                          "golden" "Samsung Galaxy S3 mini" off \
                           2>&1 >/dev/tty)
 clear
 
@@ -68,6 +76,12 @@ repo_sync () {
         cd $1/device/samsung/smdk3470-common/patch
         ./apply.sh
     fi
+    if [ $2 == "golden" ]
+    then
+        cd $1/device/samsung/golden/patches
+        ./clearpatches.sh
+        ./patch.sh
+    fi
 }
 
 repo_build () {
@@ -115,6 +129,9 @@ do
             ;;
         "zerofltexx" )
             DEVPATH="/mnt/VMsA/zerofltexx"
+            ;;
+        "golden" )
+            DEVPATH="/mnt/Android/golden"
             ;;
         * )
             echo "Canceled [$DEVICES]"
