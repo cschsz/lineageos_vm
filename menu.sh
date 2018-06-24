@@ -5,13 +5,6 @@ then
     read -p "Press any key..."
 fi
 
-export USE_CCACHE=1
-export USE_NINJA=false
-export CCACHE_COMPRESS=1
-export ANDROID_JACK_VM_ARGS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx4G"
-export JACK_SERVER_VM_ARGUMENTS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx4g"
-export EXPERIMENTAL_USE_JAVA8=true
-
 BACKTITLE="LineageOS"
 TITLE="Compiling"
 ZIPPATH="/mnt/Android/_builds"
@@ -60,10 +53,18 @@ move_zips () {
 
 print_status () {
     #echo $2 | mail -s "$2 build done!" $BUILD_DONE_EMAIL
+
+    # print
     echo "============================================"
     cat $1/build/core/version_defaults.mk | grep "PLATFORM_SECURITY_PATCH :="
     cat $1/out/target/product/$2/obj/KERNEL_OBJ/include/config/kernel.release
     ls -lh $1/out/target/product/$2/kernel
+    # log
+    echo "============================================" >> log.txt
+    echo $1 $2 >> log.txt
+    cat $1/build/core/version_defaults.mk | grep "PLATFORM_SECURITY_PATCH :=" >> log.txt
+    cat $1/out/target/product/$2/obj/KERNEL_OBJ/include/config/kernel.release >> log.txt
+    ls -lh $1/out/target/product/$2/kernel >> log.txt
 }
 
 repo_sync () {
