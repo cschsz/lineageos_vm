@@ -5,6 +5,8 @@ then
     read -p "Press any key..."
 fi
 
+LOGFILE="/home/christian/loslog.txt"
+
 BACKTITLE="LineageOS"
 TITLE="Compiling"
 ZIPPATH="/mnt/Android/_builds"
@@ -60,11 +62,11 @@ print_status () {
     cat $1/out/target/product/$2/obj/KERNEL_OBJ/include/config/kernel.release
     ls -lh $1/out/target/product/$2/kernel
     # log
-    echo "============================================" >> log.txt
-    echo $1 $2 >> log.txt
-    cat $1/build/core/version_defaults.mk | grep "PLATFORM_SECURITY_PATCH :=" >> log.txt
-    cat $1/out/target/product/$2/obj/KERNEL_OBJ/include/config/kernel.release >> log.txt
-    ls -lh $1/out/target/product/$2/kernel >> log.txt
+    echo "============================================" >> $LOGFILE
+    echo $1 $2 >> $LOGFILE
+    cat $1/build/core/version_defaults.mk | grep "PLATFORM_SECURITY_PATCH :=" >> $LOGFILE
+    cat $1/out/target/product/$2/obj/KERNEL_OBJ/include/config/kernel.release >> $LOGFILE
+    ls -lh $1/out/target/product/$2/kernel >> $LOGFILE
 }
 
 repo_sync () {
