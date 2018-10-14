@@ -1,16 +1,10 @@
-mkdir -p ~/android/system
-cd ~/android/system
+mkdir -p gtaxl
+cd gtaxl
 
 ccache -M 50G
 repo init -u https://github.com/LineageOS/android.git -b cm-14.1
 
-git config --global user.email $GITHUB_USER_EMAIL
-git config --global user.name $GITHUB_USER_NAME
-
-repo init -u https://github.com/LineageOS/android.git -b cm-14.1
-
 mkdir -p .repo/local_manifests
-
 vim .repo/local_manifests/local_manifest.xml
 --------------------------------------------
 <?xml version="1.0" encoding="UTF-8"?>
@@ -18,10 +12,10 @@ vim .repo/local_manifests/local_manifest.xml
 
   <project name="TheMuppets/proprietary_vendor_samsung" path="vendor/samsung" remote="github" revision="cm-14.1" />
   <project name="TheMuppets/proprietary_vendor_ti" path="vendor/ti" remote="github" revision="master" />
-  
+
   <project name="Valera1978/android_device_samsung_gtaxllte" path="device/samsung/gtaxllte" remote="github" />
   <project name="Valera1978/android_device_samsung_gtaxlwifi" path="device/samsung/gtaxlwifi" remote="github" />
-  <project name="cschsz/android_kernel_samsung_exynos7870" path="kernel/samsung/exynos7870" remote="github" revision="CVE-testing" />
+  <!-- <project name="cschsz/android_kernel_samsung_exynos7870" path="kernel/samsung/exynos7870" remote="github" revision="CVE-stable" /> -->
   <project name="Valera1978/android_vendor_samsung_gtaxllte" path="vendor/samsung/gtaxllte" remote="github" />
   <project name="Valera1978/android_vendor_samsung_gtaxlwifi" path="vendor/samsung/gtaxlwifi" remote="github" />
   <project name="Valera1978/android_hardware_samsung_slsi-cm_exynos" path="hardware/samsung_slsi-cm/exynos" remote="github" />
@@ -35,3 +29,7 @@ vim .repo/local_manifests/local_manifest.xml
 </manifest>
 --------------------------------------------
 
+git clone https://github.com/cschsz/android_kernel_samsung_exynos7870.git ./kernel/samsung/exynos7870
+cd ./kernel/samsung/exynos7870
+git remote add linux https://github.com/torvalds/linux
+git fetch --all
