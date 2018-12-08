@@ -197,3 +197,6 @@ do
             ;;
     esac
 done
+
+echo "Done!"
+read -p "Press any key..."
